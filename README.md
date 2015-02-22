@@ -1,1 +1,3 @@
-Buf is a replacement for your shit short-term memory.
+Buf is a short-term memory aid.
+
+It is not functioning yet.
