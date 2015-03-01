@@ -1,11 +1,13 @@
+#!/usr/bin/env ruby
+
 require 'thor'
 
 class Buf < Thor
 
   def initialize(*args)
     super
-    @buffile = "foo.txt"
-    @archivefile = "foo.txt.archive"
+    @buffile = "/users/rocker/buf/lib/foo.txt"
+    @archivefile = "/users/rocker/buf/lib/foo.txt.archive"
   end
 
   desc "wr NOTE TIME", "appends note to buffile with the expiration time appended"
@@ -50,11 +52,13 @@ class Buf < Thor
   def echo
     now = Time.now
     f = File.open(@buffile, "r")
+    count = 1
     f.each do |line|
       date = (line.split)[-1]
       date = Time.new(date[0..3], date[4..5], date[6..7], date[9..10], date[11..12], date[13..14])
       if ((date <=> now) == 1)
-        puts line
+        puts "#{count}. #{line}"
+        count+= 1
       end
     end
   end
