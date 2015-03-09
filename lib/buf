@@ -57,14 +57,13 @@ class Buf < Thor
       date = (line.split)[-1]
       date = Time.new(date[0..3], date[4..5], date[6..7], date[9..10], date[11..12], date[13..14])
       if ((date <=> now) == 1)
-        puts "#{count}. #{line}"
+        time_string = [60, 60, 24].inject([date - now]) { |m, o| m.unshift(m.shift.divmod(o)).flatten }
+        time_string = time_string[0..2].join(":")
+        puts "#{count}. #{(line.split)[0..-2].join(" ")} #{time_string}"
         count+= 1
       end
     end
   end
-
-
-
 
 =begin
 	private
