@@ -1,3 +1,5 @@
+go to bed 20150309-221641
+check in for flight 20150309-171543
 Find out when Clojure thing is. 20150309-155131
 eat 20150310-135022
 Work on buf 20150309-144455
