@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'thor'
+require 'fileutils'
+require 'tempfile'
 
 class Buf < Thor
 
@@ -29,6 +31,7 @@ class Buf < Thor
   def cull
     now = Time.now
     buf = File.open(@buffile, "r")
+    temp = Tempfile.new("tempbaby")
 
     buf.each do |line|
       date = (line.split)[-1]
@@ -39,13 +42,15 @@ class Buf < Thor
           File.unlink(@archivefile)
           File.open(@archivefile, "w") do |newArch|
             newArch.write(line)
-            newArch.write("\n")
             newArch.write(origArch.read)
           end
         end
-        # delete line from buffile. that's up next
+      else 
+        temp << line
       end
     end
+    temp.close
+    FileUtils.mv(temp.path, @buffile)
   end
       
   desc "echo", "prints unexpired notes"
