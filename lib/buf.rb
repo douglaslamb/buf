@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+#
+# next thing i'm doing is making this thing work with two dotfiles instead of my foo.txt
+# and foo.txt.archive
 
 # rubygems
 require 'rubygems'
