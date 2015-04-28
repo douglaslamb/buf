@@ -4,4 +4,6 @@ Buf is a dead simple short-term memory aid. The user writes a short reminder and
 
 ## Install
 
+'''
 gem install buf
+'''
