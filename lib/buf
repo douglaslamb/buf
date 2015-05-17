@@ -8,6 +8,23 @@ class Buf < Thor
 
   def initialize(*args)
     super
+    # no I just write directly to the config file. Just do that
+    # and I just write directly to that and um. well.
+    # I want to be able to control it with git so I need
+    # to be able to put it in a folder
+    # so the config file will be there at
+    # .bufrc
+    # if there is no ~/.bufrc I will create one
+    # and the default path will be in ~/
+    # for the buffile and the archive file
+    # yes. so it will be 
+    # buf.txt and buf.archive.txt
+    # so basically just read from the config file
+    # and look for a buffile and archive file in that spot
+    # and if there is one, read it, and if there isn't, create one
+    # and create the folder and read from it. that's pretty simple. to change the buffile
+    # or archive file you manually modify .bufrc.
+    # then I think I'll be done with buf
     @buffile = "/users/rocker/buf/lib/foo.txt"
     @archivefile = "/users/rocker/buf/lib/foo.txt.archive"
   end
