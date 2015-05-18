@@ -1,5 +1,12 @@
 #!/usr/bin/env ruby
+#
+# next thing i'm doing is making this thing work with two dotfiles instead of my foo.txt
+# and foo.txt.archive
 
+# rubygems
+require 'rubygems'
+
+# libs
 require 'thor'
 require 'fileutils'
 require 'tempfile'
@@ -30,8 +37,6 @@ class Buf < Thor
   end
 
   desc "wr NOTE TIME", "appends note to buffile with the expiration time appended"
-  # this method needs to add a string and a time to the top line of the 
-  # file and it needs to be able to deduce the time
   def wr(note, hours)
     t = Time.now + 60 * 60 * hours.to_i
     File.open(@buffile, "r") do |orig|
@@ -72,56 +77,19 @@ class Buf < Thor
       
   desc "echo", "prints unexpired notes"
   def echo
+    cull
     now = Time.now
     f = File.open(@buffile, "r")
     count = 1
     f.each do |line|
       date = (line.split)[-1]
       date = Time.new(date[0..3], date[4..5], date[6..7], date[9..10], date[11..12], date[13..14])
-      if ((date <=> now) == 1)
-        time_string = [60, 60, 24].inject([date - now]) { |m, o| m.unshift(m.shift.divmod(o)).flatten }
-        time_string = time_string[0..2].join(":")
-        puts "#{count}. #{(line.split)[0..-2].join(" ")} #{time_string}"
-        count+= 1
-      end
+      time_string = [60, 60, 24].inject([date - now]) { |m, o| m.unshift(m.shift.divmod(o)).flatten }
+      time_string = time_string[0..2].join(":")
+      puts "#{count}. #{(line.split)[0..-2].join(" ")} #{time_string}"
+      count+= 1
     end
   end
-
-=begin
-	private
-	def loadconfig
-		File.open("poop.txt") do |f|
-			f.any? do |line|
-				if line.include?("buffile")
-					puts line
-				end
-			end
-		end
-		#f = File.open("poop.txt", "r")
-		#buffile = f.match /^buffile = (.*)/
-		#puts "turd"
-	end
-=end
-
 end
 
 Buf.start(ARGV)
-
-# This app is going to look like this. It's going to have
-# a text file that it is going to read and write from.
-# There will also be a config file that is loaded every time the
-# app is loaded. That config will be call .bufrc and it will
-# be in ~/. It will point buf to the default buffer file.
-# Buf will be able to do the following
-# 1. add a note
-# 	when adding a note we will specify a string and a time. both will
-# 	be written to the buffile. User can leave time blank and
-# 	default time will be used.
-# 2. remove a note
-# 	The note will be removed from the buffile.
-# 3. print notes
-# 	The notes will be culled and unexpired notes will be echoed.
-# 	We can print without time expirations if we want.
-# 4. cull notes
-# 	Move expired notes to an archive file.
-#
