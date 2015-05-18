@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'buf'
-  s.version     = '0.0.4'
-  s.date        = '2015-04-26'
-  s.summary     = "still STILL fixing problem w initial gem release. it wouldn't run after gem install"
+  s.version     = '0.0.5'
+  s.date        = '2015-05-18'
+  s.summary     = "still working on it"
   s.description = "A dead simple short-term memory aid"
   s.authors     = ["Douglas Lamb"]
   s.email       = 'douglaslamb@douglaslamb.com'
