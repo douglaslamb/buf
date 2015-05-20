@@ -15,25 +15,42 @@ class Buf < Thor
 
   def initialize(*args)
     super
-    # no I just write directly to the config file. Just do that
-    # and I just write directly to that and um. well.
-    # I want to be able to control it with git so I need
-    # to be able to put it in a folder
-    # so the config file will be there at
-    # .bufrc
-    # if there is no ~/.bufrc I will create one
-    # and the default path will be in ~/
-    # for the buffile and the archive file
-    # yes. so it will be 
-    # buf.txt and buf.archive.txt
-    # so basically just read from the config file
-    # and look for a buffile and archive file in that spot
-    # and if there is one, read it, and if there isn't, create one
-    # and create the folder and read from it. that's pretty simple. to change the buffile
-    # or archive file you manually modify .bufrc.
-    # then I think I'll be done with buf
+    # 1. create ~/.bufrc if it does not exist 
+    check_dotfile('~/.bufrc')
+
+    # 2. read the config file
+    read_dotfile('~/.bufrc')
+
     @buffile = "/users/rocker/buf/lib/foo.txt"
     @archivefile = "/users/rocker/buf/lib/foo.txt.archive"
+  end
+
+  def check_dotfile(dotfile)
+    unless File.file?(dotfile)
+      File.open(dotfile, 'a') do |f|
+        f << "set buffile = ~/buffile.txt\n"
+        f << "set archivefile = ~/buffile.txt.archive"
+      end
+    end
+  end
+
+  def read_dotfile(dotfile)
+    IO.foreach(dotfile) do |line|
+      line = line.chomp
+      if (line[0] != '#')
+        line = line.split
+        if (line.length == 4 &&
+            line[0] == 'set' &&
+            line[2] == '=' &&
+            # I'm working here. I don't know what to do. I need
+            # to um like. get this conditional right and read or write the 
+            # right file
+
+           
+
+        
+
+
   end
 
   desc "wr NOTE TIME", "appends note to buffile with the expiration time appended"
