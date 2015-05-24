@@ -12,16 +12,18 @@ Buf creates ~/.bufrc when it is first run, unless ~/.bufrc already exists. Buf a
 
 ## Usage
 
+### 1. Append note to buffile with the expiration time
+
 `buf wr NOTE TIME`
 
-Appends note to buffile with the expiration time.
-
-Example:
-
-`buf wr "Feed the cat" 3`
-
-"Feed the cat" will be printed upon running 'buf echo' for the next three hours. In three hours "Feed the cat" will expire. It will be moved from buffile.txt to buffile.txt.archive.
+### 2. Print unexpired notes
 
 `buf echo`
 
-Prints unexpired notes.
+### Example:
+
+`buf wr "Feed the cat" 3`
+`buf echo`
+`=> 1. Feed the cat 0:2:59`
+
+"Feed the cat" will be printed upon running `buf echo` for the next three hours. In three hours "Feed the cat" will be moved from buffile.txt to buffile.txt.archive.
