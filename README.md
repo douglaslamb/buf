@@ -4,7 +4,9 @@ Buf is a dead simple short-term memory aid. The user enters a short reminder and
 
 ## Install
 
-`gem install buf`
+```
+gem install buf
+```
 
 ## Configuration
 
@@ -14,11 +16,15 @@ Buf creates ~/.bufrc when it is first run, unless ~/.bufrc already exists. Buf a
 
 ### 1. Append note to buffile with the expiration time
 
-`buf wr NOTE TIME`
+```
+buf wr NOTE TIME
+```
 
 ### 2. Print unexpired notes
 
-`buf echo`
+```
+buf echo
+```
 
 ### Example:
 
