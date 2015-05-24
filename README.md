@@ -14,13 +14,13 @@ Buf creates ~/.bufrc when it is first run, unless ~/.bufrc already exists. Buf a
 
 ## Usage
 
-1. Append note to buffile with the expiration time
+Append note to buffile with the expiration time
 
 ```
 buf wr NOTE TIME
 ```
 
-2. Print unexpired notes
+Print unexpired notes
 
 ```
 buf echo
