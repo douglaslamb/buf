@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'buf'
-  s.version     = '0.0.7'
-  s.date        = '2015-05-20'
-  s.summary     = "It is working. with 0.0.6 I had forgotten to add the new cli to /bin"
+  s.version     = '0.0.9'
+  s.date        = '2015-05-30'
+  s.summary     = "It works. 0.0.7 failed to specify thor as a runtime dependency."
   s.description = "A dead simple short-term memory aid"
   s.authors     = ["Douglas Lamb"]
   s.email       = 'douglaslamb@douglaslamb.com'
@@ -10,4 +10,5 @@ Gem::Specification.new do |s|
   s.executables << 'buf'
   s.homepage    = 'https://github.com/douglaslamb/buf'
   s.license     = 'none'
+  s.add_dependency 'thor'
 end
