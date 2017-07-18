@@ -4,9 +4,7 @@ Buf is a dead simple short-term memory aid. The user enters a short reminder and
 
 ## Install
 
-```
-gem install buf
-```
+Note: `gem install buf` fails because of a new Ruby version, I think. This repo is preserved for historical purposes.
 
 ## Configuration
 
